@@ -1,0 +1,13 @@
+Find employees earning more than average salary of their department
+
+SELECT 
+    e.name,
+    e.salary,
+    d.dept_name
+FROM employees e
+JOIN departments d ON e.dept_id = d.dept_id
+WHERE e.salary > (
+    SELECT AVG(salary)
+    FROM employees
+    WHERE dept_id = e.dept_id
+);
